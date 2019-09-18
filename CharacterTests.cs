@@ -34,5 +34,13 @@ namespace BasicTDD.Tests
         {
             Assert.That(character.IsDead, Is.False);
         }
+
+        [TestCase(100, 45)]
+        [TestCase(80, 65)]
+        public void Health_Damage_ReturnsCorrectValue(int damage, int expectedHealth)
+        {
+            character.Damage(damage);
+            Assert.That(character.Health, Is.EqualTo(expectedHealth));
+        }
     }
 }
