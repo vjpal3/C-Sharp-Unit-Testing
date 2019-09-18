@@ -13,5 +13,13 @@ namespace BasicTDD.Tests
             Assert.That(result, Is.EqualTo(1));
 
         }
+        
+        [Test]
+        public void ParsePort_InvalidFormat_ThrowsInvalidFormatException()
+        {
+            void action() => SerialPortParser.ParsePort("1");
+            Assert.Throws<FormatException>(action);
+            
+        }
     }
 }
