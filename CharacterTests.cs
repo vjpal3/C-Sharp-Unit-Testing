@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using NUnit.Framework;
 
 
@@ -35,12 +36,22 @@ namespace BasicTDD.Tests
             Assert.That(character.IsDead, Is.False);
         }
 
-        [TestCase(100, 45)]
-        [TestCase(80, 65)]
+        //[TestCase(100, 45)]
+        //[TestCase(80, 65)]
+        [TestCaseSource(typeof(DamageSource))]
         public void Health_Damage_ReturnsCorrectValue(int damage, int expectedHealth)
         {
             character.Damage(damage);
             Assert.That(character.Health, Is.EqualTo(expectedHealth));
+        }
+
+        public class DamageSource : IEnumerable
+        {
+            public IEnumerator GetEnumerator()
+            {
+                yield return new int[] { 100, 45 };
+                yield return new int[] { 80, 65 };
+            }
         }
     }
 }
