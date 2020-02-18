@@ -8,8 +8,14 @@ namespace BasicTDD.Tests
         [Test]
         public void TestConstraints ()
         {
+            //All constraint used with Is & Has constraints
             var array = new string[] { "abc", "nmb", "bdr" };
-            Assert.That(array, Is.All.Contain("b"));
+            Assert.That(array, Is.All.Contains("b"));
+
+            var intArray = new int[] { 1, 2, 3, 4, 9, 8 };
+            Assert.That(intArray, Has.All.GreaterThan(0));
+
+            // Not with Is & Does
             Assert.That(array, Is.Not.Length.EqualTo(4));
             Assert.That(@"e:\tmp.txt", Does.Not.Exist);
             Assert.That(42, Is.Not.Null);
@@ -18,8 +24,7 @@ namespace BasicTDD.Tests
             Assert.That((2 == 4), Is.False);
             Assert.That((2 + 2), Is.Not.EqualTo(3));
 
-            var intArray = new int[] { 1, 2, 3, 4, 9, 8 };
-            Assert.That(intArray, Is.All.GreaterThan(0));
+            
 
             // Does constraint is mostly used with strings.
             string phrase = "Are you Ok?";
@@ -37,6 +42,10 @@ namespace BasicTDD.Tests
             // "Or & And" compound conatraints
             Assert.That(-5, Is.LessThan(1).Or.GreaterThan(10));
             Assert.That(5, Is.LessThan(10).And.GreaterThan(1));
+
+            //InRange includes lower and upper boundery values.
+            Assert.That(19, Is.InRange(1, 19));
+
         }
     }
 }
