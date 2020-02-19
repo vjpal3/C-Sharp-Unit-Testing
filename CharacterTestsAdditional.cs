@@ -155,6 +155,17 @@ namespace BasicTDD.Tests
         }
 
         #endregion
-        
+
+        #region Exceptions
+        [Test]
+        public void Damage_1001_ThrowsArgumentOutOfRangeException()
+        {
+            var c1 = new Character(Type.Elf);
+            Assert.Throws<ArgumentOutOfRangeException>(() => c1.Damage(1001));
+        }
+
+
+        #endregion
+
     }
 }
